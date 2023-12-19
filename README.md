@@ -1,2 +1,2 @@
 # DFZSL
-Code for the paper "Data-Free Zero-Shot Learning"
+Code for the paper "Data-Free Zero-Shot Learning", Coming soon.
