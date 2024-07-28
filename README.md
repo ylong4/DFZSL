@@ -2,16 +2,21 @@
 ## Overview
 ![Overview1](pipeline.png "Overview2")
 ## Prerequisites
-+ Python 3.8
-+ Pytorch 1.11
-+ torchvision 0.12.0
-+ h5py 2.10
-+ scikit-learn 1.2.2
-+ scipy=1.10.1
-+ numpy 1.24.3
-+ numpy-base 1.24.3
-+ pillow 5.1.0
++ Python==3.8
 + ftfy 6.1.1
++ easydict==1.10
++ easydl==2.2.0
++ numpy==1.24.3
++ optuna==3.2.0
++ pandas==1.5.3
++ Pillow==9.3.0
++ PyYAML==6.0
++ regex==2023.5.5
++ scikit_learn==1.2.2
++ scipy==1.10.1
++ torch==1.11.0
++ torchvision==0.12.0
++ tqdm==4.65.0
 
 ## Installation
 The model is built in PyTorch 1.11 and tested on Ubuntu 16.04 environment (Python3.8, CUDA 11.7, cuDNN 8.2.0).
@@ -31,7 +36,7 @@ Download CUB, AWA, FLO and SUN features from the drive link shared below.
 ```
 link: https://drive.google.com/drive/folders/16Xk1eFSWjQTtuQivTogMmvL3P6F_084u?usp=sharing
 ```
-Extract res101.mat and att_splits.mat from each dataset downloaded.  
+Extract res101.mat and att_splits.mat from each dataset downloaded,  put them in DFZSL/datasets folder.  
 The res101.mat contains the res101 image features, and the att_splits.mat contains the class split and the corresponding attribute annotations for each class.
 
 Run DFZSL/splits/extract_clip_feature.py to replace the res101 image features with ViT-B16 features, 
