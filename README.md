@@ -36,7 +36,7 @@ res101.mat contains the res101 image features, and att_splits.mat contains the c
 
 Run DFZSL/splits/extract_clip_feature.py to replace the res101 image features with ViT-B16 features, 
 and also replace the attribute annotations with CLIP text features of the corresponding categories.
-res101.mat--->ViTB16.mat
+res101.mat--->ViTB16.mat  
 att_splits.mat--->clip_splits.mat
 
 ### Datasets of base-to-new
