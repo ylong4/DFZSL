@@ -1,0 +1,86 @@
+manual_seed: 0
+cuda: 0
+
+dataset:
+  name: imagenet
+  root: /DFGZL
+  workers: 4
+  image_embedding: ViTB16
+  image_embedding_dim: 512
+  class_embedding: clip
+  class_embedding_dim: 512
+  resample: True
+
+train:
+  batch_size: 512
+
+test:
+  batch_size: 512
+
+classifier:
+  epochs: 100
+  optimizer: Adam
+  scheduler: stepwise
+  metric: cosine
+  temperature: 1.0
+  weight_activation: None
+
+  optimconf:
+    lr: 0.0003
+    weight_decay: 0.0005
+
+    dampening: 0
+    nesterov: True
+
+    betas: [ 0.9, 0.999 ]
+    eps: 0.00000001
+    amsgrad: False
+
+vdm:
+  generation: simulator #/ gmm / generator
+  prototype: weight
+  prototype_activation: None
+  variance: distance
+  feature_activation: None
+  num: 200
+  theta: 1.0
+
+  simulator:
+    epochs: 1000
+    optimizer: Adam
+    scheduler: stepwise
+    nsample: 50
+    regularizer: False
+    blackbox: True
+
+    optimconf:
+      lr: 0.003
+      weight_decay: 0.0005
+
+      dampening: 0
+      nesterov: True
+
+      betas: [ 0.9, 0.999 ]
+      eps: 0.00000001
+      amsgrad: False
+
+  generator:
+    epochs: 500
+    gen_epochs: 1
+    disdill_epochs: 1
+    noise_dim: 20
+    hidden_dim: 1024
+    optimizer: Adam
+    nsample: 50
+    blackbox: True
+
+    optimconf:
+      lr: 0.00001
+      weight_decay: 0.0005
+
+      dampening: 0
+      nesterov: True
+
+      betas: [ 0.9, 0.999 ]
+      eps: 0.00000001
+      amsgrad: False

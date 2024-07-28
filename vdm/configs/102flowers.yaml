@@ -1,0 +1,65 @@
+manual_seed: 0
+cuda: 0
+
+dataset:
+  name: 102flowers
+  root: /DFGZL
+  workers: 2
+  image_embedding: ViTB16
+  image_embedding_dim: 512
+  class_embedding: clip
+  class_embedding_dim: 512
+  resample: True
+
+train:
+  batch_size: 512
+
+test:
+  batch_size: 512
+
+classifier:
+  epochs: 100
+  optimizer: Adam
+  scheduler: stepwise
+  metric: cosine
+  temperature: 1.0
+  weight_activation: None
+
+  optimconf:
+    lr: 0.0003
+    weight_decay: 0.0005
+
+    dampening: 0
+    nesterov: True
+
+    betas: [ 0.9, 0.999 ]
+    eps: 0.00000001
+    amsgrad: False
+
+vdm:
+  generation: simulator
+  prototype: weight
+  prototype_activation: None
+  variance: distance
+  feature_activation: None
+  num: 100
+  theta: 1.0
+
+  simulator:
+    epochs: 1000
+    optimizer: Adam
+    scheduler: stepwise
+    nsample: 50
+    regularizer: None
+    blackbox: True
+
+    optimconf:
+      lr: 0.001
+      weight_decay: 0.0005
+
+      dampening: 0
+      nesterov: True
+
+      betas: [ 0.9, 0.999 ]
+      eps: 0.00000001
+      amsgrad: False

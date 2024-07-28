@@ -1,0 +1,16 @@
+dataroot: DFGZL/datasets/
+dataset: AWA2
+image_embedding: simulator-ViTB16
+class_embedding: simulator-clip
+nepoch: 1
+batch_size: 4
+lr: 0.003
+weight_decay: 0.0005
+residual_weight: 0.005
+regularization_weight: 1.0
+n_ctx: 4
+ctx_init: a photo of a
+gpu: 0
+manual_seed: 0
+workers: 4
+experiment: vlpt 
