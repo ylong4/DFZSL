@@ -31,11 +31,11 @@ Download CUB, AWA, FLO and SUN features from the drive link shared below.
 ```
 link: https://drive.google.com/drive/folders/16Xk1eFSWjQTtuQivTogMmvL3P6F_084u?usp=sharing
 ```
-Extract res101.mat and att_splits.mat from each dataset downloaded.
-res101.mat contains the res101 image features, and att_splits.mat contains the class divisions and the corresponding attribute annotations for each class.
+Extract res101.mat and att_splits.mat from each dataset downloaded.  
+The res101.mat contains the res101 image features, and the att_splits.mat contains the class split and the corresponding attribute annotations for each class.
 
 Run DFZSL/splits/extract_clip_feature.py to replace the res101 image features with ViT-B16 features, 
-and also replace the attribute annotations with CLIP text features of the corresponding categories.
+and also replace the attribute annotations with CLIP text features of the corresponding class.  
 res101.mat--->ViTB16.mat  
 att_splits.mat--->clip_splits.mat
 
