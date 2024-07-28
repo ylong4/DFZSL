@@ -3,7 +3,7 @@
 ![Overview1](pipeline.png "Overview2")
 ## Prerequisites
 + Python==3.8
-+ ftfy 6.1.1
++ ftfy==6.1.1
 + easydict==1.10
 + easydl==2.2.0
 + numpy==1.24.3
