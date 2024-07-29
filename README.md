@@ -31,8 +31,7 @@ conda install pytorch==1.11.0 torchvision==0.12.0 torchaudio==0.11.0 cudatoolkit
 
 
 ### Datasets of GZSL
-
-Download CUB, AWA, FLO and SUN features from the drive link shared below.
+You can download CUB, AWA, FLO and SUN features from the following link provided by the tfvaegan authors.
 ```
 link: https://drive.google.com/drive/folders/16Xk1eFSWjQTtuQivTogMmvL3P6F_084u?usp=sharing
 ```
