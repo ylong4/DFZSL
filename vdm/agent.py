@@ -182,7 +182,6 @@ class SimAgent:
                 student_logits = F.normalize(features) @ F.normalize(mu).t() / self.temperature
                 loss = F.mse_loss(student_logits, teacher_logits)
                 # loss = F.kl_div(student_logits.log_softmax(1), teacher_logits.softmax(1))
-                # 黑盒  且无梯度
 
             protocol = self.teacher(mu).diag().mean()
             if protocol > best_protocol:
