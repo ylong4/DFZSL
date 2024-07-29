@@ -68,7 +68,7 @@ python  get_seen_virtual_domain.py  --config configs/AWA2.yaml
 cd DFZSL/pt
 python  feature_train_prompt.py  --config  configs/GZSL/AWA2.yaml
 ```
-4. Using existing generation-based methods, traine the generator to generate features for new classes and train fully supervised classifiers.
+4. Using existing generation-based methods, train the generator to generate features for new classes and train fully supervised classifiers.
 ```
 cd DFZSL/tfvaegan
 python  scripts/run_AWA2_tfvaegan.py
