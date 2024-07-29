@@ -41,22 +41,19 @@ class LogisticRegressionGPU(BaseEstimator, ClassifierMixin,nn.Module):
         self.tol = tol
 
     def fit(self, X, y):
-        # 将数据从numpy array转为torch tensor
         X_tensor = torch.from_numpy(X).float().to(torch.device('cuda'))
         y_tensor = torch.from_numpy(y).long().to(torch.device('cuda'))
 
-        # 初始化模型
         self.coef_ = torch.zeros((X.shape[1],))
         self.intercept_ = torch.zeros((1,))
         self.n_iter_ = 0
 
-        # 计算类别权重
+
         n_samples = len(y)
         y=torch.from_numpy(y).long()
         class_weights = torch.tensor([n_samples / (2 * torch.sum(y == 0)), n_samples / (2 * torch.sum(y == 1))]).to(
             torch.device('cuda'))
 
-        # 训练模型
         for i in range(self.max_iter):
             y_pred = torch.sigmoid(self.intercept_ + torch.matmul(X_tensor, self.coef_))
             loss = F.binary_cross_entropy(y_pred, y_tensor.float(), weight=class_weights, reduction='mean')
