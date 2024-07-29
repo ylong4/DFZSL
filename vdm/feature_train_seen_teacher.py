@@ -122,13 +122,13 @@ def main():
     print('Linear Probe Seen Accuracy: ', acc)
 
 
-    pdb.set_trace()
+
     seen_clf_params = {
         'classifier': seen_clf.state_dict(),
         'accuracy': acc
     }
 
-    pdb.set_trace()
+
     with open(os.path.join(log_dir, f'best_real_seen_classifier-{opt.classifier.weight_activation}Act+{opt.classifier.metric}Metric_{opt.classifier.optimizer}.pkl'), 'wb') as f:
         torch.save(seen_clf_params, f)
     print('Having saved classifier weights.')
