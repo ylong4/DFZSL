@@ -91,8 +91,6 @@ matcontent['features'] = np.array(clip_feature).T
 clip_filename = opt.clip_embedding.replace('/', '') + '.mat'
 clip_filename = clip_filename.replace('-', '')
 print(clip_filename)
-pdb.set_trace()
-
 sio.savemat(os.path.join(opt.dataroot, opt.dataset, clip_filename), matcontent)
 
 
@@ -128,55 +126,6 @@ with torch.no_grad():
 
 matcontent['cls_text'] = np.array(clip_cls_text)
 matcontent['cls_features'] = np.array(clip_cls_feature).T
-
-
-if opt.dataset == 'AWA2':
-    replace_word = [('newworld', 'new world'), ('oldworld', 'old world'), ('nestspot', 'nest spot'),
-                    ('toughskin', 'tough skin'), ('longleg', 'long leg'), ('chewteeth', 'chew teeth'),
-                    ('meatteeth', 'meat teeth'), ('strainteeth', 'strain teeth'), ('quadrapedal', 'quadrupedal')]
-    path = os.path.join(opt.dataroot, opt.dataset, 'attributes.txt')
-    df = pd.read_csv(path, sep='\t', header=None, names=['idx', 'des'])
-    new_des = df['des'].values
-elif opt.dataset == 'CUB':
-    replace_word = [('spatulate', 'broad'), ('upperparts', 'upper parts'), ('grey', 'gray'),
-                    ('eyering', 'eye ring')]
-    path = os.path.join(opt.dataroot, opt.dataset, 'attributes.txt')
-    df = pd.read_csv(path, sep=' ', header=None, names=['idx', 'des'])
-    des = df['des'].values
-    new_des = [' '.join(i.split('_')) for i in des]
-    new_des = [' '.join(i.split('-')) for i in new_des]
-    new_des = [' '.join(i.split('::')) for i in new_des]
-    new_des = [i.split('(')[0] for i in new_des]
-    new_des = [i[4:] for i in new_des]
-elif opt.dataset == 'SUN':
-    replace_word = [('rockstone', 'rock stone'), ('dirtsoil', 'dirt soil'), ('man-made', 'man-made'),
-                    ('sunsunny', 'sun sunny'), ('electricindoor', 'electric indoor'),
-                    ('semi-enclosed', 'semi enclosed'), ('far-away', 'faraway')]
-    path = os.path.join(opt.dataroot, opt.dataset, 'attributes.mat')
-    df = sio.loadmat(path)
-    des = df['attributes'].flatten()
-    df = pd.DataFrame()
-    new_des = [''.join(i.item().split('/')) for i in des]
-
-for pair in replace_word:
-    for idx, s in enumerate(new_des):
-        new_des[idx] = s.replace(pair[0], pair[1])
-
-attr_names = np.array(new_des)
-print(attr_names)
-
-clip_attr_text = []
-clip_attr_feature = []
-n_attr = attribute.shape[1]
-with torch.no_grad():
-    for i in trange(n_attr, desc='att_text'):
-        clip_attr_text.append(f"{attr_names[i]}.")
-        text = clip.tokenize(f"{attr_names[i]}.").to(device)
-        text_embedding = model.encode_text(text)
-        clip_attr_feature.append(text_embedding.squeeze().cpu().numpy())
-
-matcontent['att_text'] = np.array(clip_attr_text)
-matcontent['att_features'] = np.array(clip_attr_feature).T
 
 clip_filename = 'clip_splits.mat'
 sio.savemat(os.path.join(opt.dataroot, opt.dataset, clip_filename), matcontent)
